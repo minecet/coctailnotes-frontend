@@ -50,7 +50,7 @@ function App() {
         <Sidebar />
       </div>
 
-     {/*<Footer />*/} 
+     <Footer />
     </>
   );
 }
