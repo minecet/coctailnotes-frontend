@@ -16,7 +16,7 @@ interface FormData {
   surname?: string;
 }
 
-const AuthForm: React.FC<AuthFormProps> = ({ isSignup, submitCallback, fields, buttonLabel }) => {
+const AuthForm: React.FC<AuthFormProps> = ({ isSignup, submitCallback}) => {
   const [formData, setFormData] = useState<FormData>(
     isSignup
       ? { username: "", password: "", email: "", firstName: "", surname: "" }

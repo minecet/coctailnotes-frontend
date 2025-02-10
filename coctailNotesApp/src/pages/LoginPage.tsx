@@ -14,7 +14,7 @@ const LoginPage = () => {
     throw new Error("LoginPage must be used within a SessionContextProvider");
   }
 
-  const { token, setToken, setUser } = sessionContext;
+  const {setToken, setUser } = sessionContext;
 
   const handleLogin = async (credentials: LoginCredentials) => {
     try {

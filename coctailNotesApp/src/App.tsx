@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
-import PrivateRoute from "./components/PrivateRoute";
+//import PrivateRoute from "./components/PrivateRoute";
 import AnonymousRoute from "./components/AnonymousRoute";
 
 import Sidebar from "./components/Sidebar";
@@ -50,7 +50,7 @@ function App() {
         <Sidebar />
       </div>
 
-      <Footer />
+     {/*<Footer />*/} 
     </>
   );
 }
