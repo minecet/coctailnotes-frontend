@@ -1,20 +1,22 @@
+
 import { Route, Routes } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 //import PrivateRoute from "./components/PrivateRoute";
 import AnonymousRoute from "./components/AnonymousRoute";
-
+// core styles are required for all packages
 import Sidebar from "./components/Sidebar";
 import HomePage from "./pages/HomePage";
 
-
 import Footer from "./components/Footer";
+
 
 
 function App() {
   return (
     <>
+
       {/* Spacer for Navbar */}
       <div className="h-20"></div>
       <div className="appContainer">

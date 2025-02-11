@@ -1,12 +1,14 @@
 
-import "../assets/Forms.css";
+//import "../assets/Forms.css";
 import { Link } from "react-router-dom";
+import AuthenticationImage  from "./AuthenticationImage";
 
 const HomePage = () => {
   return (
     <div className="main-content">
-      <h1 className="h1">Welcome to the Plant Blog!</h1>
       <div className="homePageCards">
+       <AuthenticationImage/>
+
         <Link to="/blogs">
           <div className="toBlogsCard card">
 

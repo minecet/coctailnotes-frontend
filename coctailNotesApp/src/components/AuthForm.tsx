@@ -1,5 +1,5 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import "../assets/Forms.css";
+//import "../assets/Forms.css";
 
 interface AuthFormProps {
   submitCallback: (formData: FormData) => void;

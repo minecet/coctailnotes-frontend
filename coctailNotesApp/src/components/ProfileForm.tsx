@@ -1,6 +1,8 @@
-import { useState, ChangeEvent, FormEvent } from "react";
-import "../assets/Forms.css";
+import { TextInput } from '@mantine/core';
 
+import { useState, ChangeEvent, FormEvent } from "react";
+//import "../assets/Forms.css";
+import classes from './ContainedInput.module.css';
 interface ProfileData {
   username?: string;
   firstName?: string;
@@ -43,7 +45,10 @@ const ProfileForm = ({ data = {}, onSave, onCancel }: ProfileFormProps) => {
         Username:
         <input name="username" value={formData.username} onChange={handleInputChange} required />
       </label>
+      <TextInput label="Shipping address" placeholder="15329 Huston 21st" classNames={classes} />
+
       <label>
+      
         First Name:
         <input name="firstName" value={formData.firstName} onChange={handleInputChange} required />
       </label>
