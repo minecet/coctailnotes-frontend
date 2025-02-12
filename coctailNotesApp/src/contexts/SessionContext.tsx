@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, useCallback, ReactNode} from "react";
-
 import { User } from "../types/user";
+
 
 interface SessionContextType {
   token: string | null;

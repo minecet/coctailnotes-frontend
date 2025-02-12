@@ -1,15 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { SessionContext } from "../contexts/SessionContext";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const sessionContext = useContext(SessionContext);
+  const navigate = useNavigate();
+
 
   if (!sessionContext) {
     throw new Error("Sidebar must be used within a SessionContextProvider");
   }
 
   const { isAuthenticated, user, logout, isLoading } = sessionContext;
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
 
   if (isLoading) {
     return <p>Loading user...</p>;
@@ -46,17 +53,12 @@ const Sidebar = () => {
           </li>
         </ul>
       </nav>
-      <button className="log-btn" onClick={logout}>
+      <button className="log-btn" onClick={logout}
+      >
         Log out
       </button>
     </div>
-  ) : (
-    <div className="sidebar">
-      <p>Welcome User!</p>
-      <p>It seems you are not logged in</p>
-      <Link to="/login">Login</Link> or <Link to="/signup">Signup</Link>
-    </div>
-  );
+  ) : null
 };
 
 export default Sidebar;

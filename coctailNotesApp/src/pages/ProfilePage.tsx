@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, ChangeEvent } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 import ProfileForm from "../components/ProfileForm";
+import classes from "./ProfilePage.module.css"; // Import CSS
 
 const ProfilePage = () => {
   const sessionContext = useContext(SessionContext);
@@ -60,69 +61,41 @@ const ProfilePage = () => {
   };
 
   return (
-    <div>
-      {!isEditing ? (
-        <div>
-          <h1 className="profileText">
-            {user.firstName} {user.surname}
-          </h1>
-          <label
-            style={{ position: "relative", cursor: "pointer", display: "inline-block" }}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
-          >
-            <img
-              src={user.profilePicture}
-              alt="Profile"
-              style={{
-                width: 100,
-                height: 100,
-                borderRadius: "50%",
-                objectFit: "cover",
-                transition: "opacity 0.3s",
-                opacity: uploading ? 0.5 : 1,
-              }}
-            />
-            {hover && (
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: 100,
-                  height: 100,
-                  background: "rgba(0, 0, 0, 0.5)",
-                  color: "white",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: "50%",
-                  fontSize: "12px",
-                  fontWeight: "bold",
-                  textAlign: "center",
-                }}
-              >
-                Change Image
-              </div>
-            )}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileUpload}
-              style={{ position: "absolute", width: "100%", height: "100%", top: 0, left: 0, opacity: 0, cursor: "pointer" }}
-            />
-          </label>
-          {uploading && <p>Uploading...</p>}
-          <div className="profileText">
-            <p><strong>Username:</strong> {user.username}</p>
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Bio:</strong> {user.bioDescription || "No bio provided."}</p>
-          </div>
-          <button onClick={() => setIsEditing(true)}>Edit Profile</button>
-        </div>
-      ) : (
-        <ProfileForm data={user} onSave={handleSave} onCancel={() => setIsEditing(false)} />
-      )}
+    <div className={classes.wrapper}>
+      <div className={classes.form}>
+        {!isEditing ? (
+          <>
+            <h1 className={classes.title}>
+              {user.firstName} {user.surname}
+            </h1>
+            <label
+              className={classes.profileImgContainer}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+            >
+              <img
+                src={user.profilePicture}
+                alt="Profile"
+                className={classes.profileImg}
+                style={{ opacity: uploading ? 0.5 : 1 }}
+              />
+              {hover && <div className={classes.profileImgHover}>Change Image</div>}
+              <input type="file" accept="image/*" onChange={handleFileUpload} />
+            </label>
+            {uploading && <p>Uploading...</p>}
+            <div className={classes.profileDetails}>
+              <p><strong>Username:</strong> {user.username}</p>
+              <p><strong>Email:</strong> {user.email}</p>
+              <p><strong>Bio:</strong> {user.bioDescription || "No bio provided."}</p>
+            </div>
+            <button className={classes.profileButton} onClick={() => setIsEditing(true)}>
+              Edit Profile
+            </button>
+          </>
+        ) : (
+          <ProfileForm data={user} onSave={handleSave} onCancel={() => setIsEditing(false)} />
+        )}
+      </div>
     </div>
   );
 };

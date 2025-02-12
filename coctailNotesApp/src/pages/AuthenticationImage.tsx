@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 import {
     Anchor,
@@ -13,7 +14,13 @@ import {
 
 function AuthenticationImage() {
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleLoginClick = () => {
+    console.log(username)
 
+    navigate("/login", { state: { username, password } });
+  };
     return (
       <div className={classes.wrapper}>
         <Paper className={classes.form} radius={0} p={30}>
@@ -21,9 +28,11 @@ function AuthenticationImage() {
             Welcome back to Coctail Notes!
           </Title>
   
-          <TextInput label="Username" placeholder="username" size="md" />
-          <PasswordInput label="Password" placeholder="Your password" mt="md" size="md" />
-          <Button fullWidth mt="xl" size="md" onClick={() => navigate("/login")}>
+          <TextInput label="Username" placeholder="username" size="md" value={username}
+              onChange={(e) => setUsername(e.target.value)} />
+          <PasswordInput label="Password" placeholder="Your password" mt="md" size="md" value={password}
+              onChange={(e) => setPassword(e.target.value)} />
+          <Button fullWidth mt="xl" size="md" onClick={handleLoginClick}>
             Login
             
           </Button>

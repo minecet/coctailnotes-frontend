@@ -1,5 +1,6 @@
 import AuthForm from "../components/AuthForm";
 import { useNavigate } from "react-router-dom";
+import classes from "./Signup.module.css"; // Import styles
 
 interface SignupCredentials {
   username: string;
@@ -38,8 +39,10 @@ const SignupPage = () => {
   };
 
   return (
-    <div>
-      <h1 className="h1">Sign Up</h1>
+    <div className={classes.wrapper}>
+
+      <div className={classes.form}>
+        <h1 className={classes.title}>Sign Up</h1>
       <AuthForm
         isSignup={true}
         submitCallback={(formData) => handleSignup(formData as SignupCredentials)}
@@ -52,6 +55,8 @@ const SignupPage = () => {
         ]}
         buttonLabel="Sign Up"
       />
+      </div>
+
     </div>
   );
 };
