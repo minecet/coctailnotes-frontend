@@ -16,7 +16,7 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
   const { isAuthenticated, isLoading, token } = sessionContext;
 
   if (!token) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   if (isLoading) {
@@ -24,7 +24,7 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/" />;
   }
 
   return children;

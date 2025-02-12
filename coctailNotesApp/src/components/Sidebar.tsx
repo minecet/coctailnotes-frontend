@@ -1,47 +1,40 @@
 import { useContext, useEffect } from "react";
 import { SessionContext } from "../contexts/SessionContext";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import classes from "./Sidebar.module.css"; // Import Sidebar CSS
 
 const Sidebar = () => {
   const sessionContext = useContext(SessionContext);
   const navigate = useNavigate();
-
 
   if (!sessionContext) {
     throw new Error("Sidebar must be used within a SessionContextProvider");
   }
 
   const { isAuthenticated, user, logout, isLoading } = sessionContext;
+
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, navigate]);
 
   if (isLoading) {
     return <p>Loading user...</p>;
   }
 
   return isAuthenticated && user ? (
-    <div className="user-info sidebar">
-      <img
-        src={user.profilePicture}
-        alt="Profile"
-        style={{
-          width: 100,
-          height: 100,
-          borderRadius: "50%",
-          alignItems: "center",
-          textAlign: "center",
-          marginLeft: 40,
-        }}
-      />
-      <h3>{user.username}</h3>
-      <p>
-        {user.firstName} {user.surname}
-      </p>
-      <nav>
-        <ul className="ul-Profile">
+    <div className={classes.sidebar}>
+      <div className={classes.profile}>
+        <img src={user.profilePicture} alt="Profile" className={classes.profileImg} />
+        <h3>{user.username}</h3>
+        <p>
+          {user.firstName} {user.surname}
+        </p>
+      </div>
+
+      <nav className={classes.navLinks}>
+        <ul>
           <li>
             <Link to="/profile">My Profile</Link>
           </li>
@@ -53,12 +46,12 @@ const Sidebar = () => {
           </li>
         </ul>
       </nav>
-      <button className="log-btn" onClick={logout}
-      >
+
+      <button className={classes.logoutBtn} onClick={logout}>
         Log out
       </button>
     </div>
-  ) : null
+  ) : null;
 };
 
 export default Sidebar;
