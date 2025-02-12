@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import AuthForm from "../components/AuthForm";
 import { SessionContext } from "../contexts/SessionContext";
@@ -13,7 +13,6 @@ interface LoginCredentials {
 const LoginPage = () => {
   const sessionContext = useContext(SessionContext);
   const location = useLocation(); // Get passed state
-  const navigate = useNavigate();
 
     // Automatically login if credentials were passed
     useEffect(() => {

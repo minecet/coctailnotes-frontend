@@ -18,7 +18,6 @@ interface FormData {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({
-  isSignup,
   submitCallback,
   fields,
   buttonLabel,
