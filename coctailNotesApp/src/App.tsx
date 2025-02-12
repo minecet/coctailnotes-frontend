@@ -9,7 +9,6 @@ import AnonymousRoute from "./components/AnonymousRoute";
 import Sidebar from "./components/Sidebar";
 import HomePage from "./pages/HomePage";
 
-import Footer from "./components/Footer";
 
 
 
@@ -52,7 +51,6 @@ function App() {
         <Sidebar />
       </div>
 
-     <Footer />
     </>
   );
 }
