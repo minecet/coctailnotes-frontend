@@ -20,7 +20,7 @@ const AnonymousRoute = ({ children }: AnonymousRouteProps) => {
   }
 
   if (isAuthenticated) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/cocktails" />;
   }
 
   return children;

@@ -3,11 +3,12 @@ import { Route, Routes } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
-//import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./components/PrivateRoute";
 import AnonymousRoute from "./components/AnonymousRoute";
 // core styles are required for all packages
 import Sidebar from "./components/Sidebar";
 import HomePage from "./pages/HomePage";
+import RandomCocktails from "./pages/RandomCocktails";
 
 
 
@@ -40,7 +41,14 @@ function App() {
               }
             />
             <Route path="/profile" element={<ProfilePage />} />
-
+            <Route
+              path="/cocktails"
+              element={
+                <PrivateRoute>
+                  <RandomCocktails />
+                </PrivateRoute>
+              }
+            />
 
 
 

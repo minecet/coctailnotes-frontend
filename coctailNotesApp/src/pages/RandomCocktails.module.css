@@ -1,0 +1,74 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive auto-fit grid */
+    gap: 20px; /* More spacing */
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px; /* Prevents stretching too much */
+    margin: auto; /* Centers the grid */
+}
+
+.card {
+    background-color: white;
+    border: 1px solid #fad888;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
+    width: 100%;
+    max-width: 250px; /* Ensures good card size */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: "Courier New", Courier, monospace;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.title {
+    color: var(--mantine-color-black);
+    font-family: Greycliff CF, var(--mantine-font-family);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.middle-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4a69bd;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.middle-btn:hover {
+    background-color: #3b5998;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .card {
+        max-width: 200px;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+}
