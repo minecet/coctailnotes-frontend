@@ -9,6 +9,7 @@ import AnonymousRoute from "./components/AnonymousRoute";
 import Sidebar from "./components/Sidebar";
 import HomePage from "./pages/HomePage";
 import RandomCocktails from "./pages/RandomCocktails";
+import CocktailDetailsPage from "./pages/CocktailDetailsPage";
 
 
 
@@ -49,7 +50,14 @@ function App() {
                 </PrivateRoute>
               }
             />
-
+            <Route
+              path="/cocktails/:cocktailId"
+              element={
+                <PrivateRoute>
+                  <CocktailDetailsPage />
+                </PrivateRoute>
+              }
+            />
 
 
             <Route path="*" element={<h1>404 Page</h1>} />

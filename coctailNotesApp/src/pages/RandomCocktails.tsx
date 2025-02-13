@@ -4,7 +4,7 @@ import classes from "./RandomCocktails.module.css"; // Import styles
 
 // Define the expected structure of a plant object
 interface Cocktail {
-   id: string;
+   id: number;
    title?: string;
    difficulty?: string;
    portion?: string;
@@ -37,8 +37,8 @@ const RandomCocktails: React.FC = () => {
   const [cocktails, setCocktails] = useState<Cocktail[]>([]); // Typed as an array of `Plant`
 
   // Navigating to a plant details page
-  const handleCocktailClick = (cocktailId: string) => {
-    navigate(`/coctails/${cocktailId}`);
+  const handleCocktailClick = (cocktailId: number) => {
+    navigate(`/cocktails/${cocktailId}`);
   };
 
   // Function to fetch random plants
