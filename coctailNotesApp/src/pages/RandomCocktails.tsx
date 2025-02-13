@@ -45,7 +45,7 @@ const RandomCocktails: React.FC = () => {
   const fetchRandomCocktails = async (): Promise<void> => {
     try {
       const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/cocktails/random?limit=5`
+        `${import.meta.env.VITE_API_URL}/api/cocktails/random?limit=10`
       ); // Assuming this endpoint exists
 
       if (!response.ok) {

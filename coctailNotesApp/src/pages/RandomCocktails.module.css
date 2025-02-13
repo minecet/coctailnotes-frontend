@@ -1,10 +1,11 @@
+/* CSS for Grid and Cards */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive auto-fit grid */
     gap: 20px; /* More spacing */
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 80px 20px 20px; /* Added top padding to prevent overlap */
     max-width: 1200px; /* Prevents stretching too much */
     margin: auto; /* Centers the grid */
 }
@@ -62,6 +63,7 @@
 @media (max-width: 768px) {
     .grid {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        padding-top: 100px; /* More top padding on smaller screens */
     }
 
     .card {
