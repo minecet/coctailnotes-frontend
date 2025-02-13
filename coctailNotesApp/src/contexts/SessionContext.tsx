@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, useCallback, ReactNode} from "react
 import { User } from "../types/user";
 
 
-interface SessionContextType {
+export interface SessionContextType {
   token: string | null;
   setToken: (token: string | null) => void;
   isAuthenticated: boolean;

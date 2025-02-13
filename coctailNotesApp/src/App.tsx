@@ -10,6 +10,7 @@ import Sidebar from "./components/Sidebar";
 import HomePage from "./pages/HomePage";
 import RandomCocktails from "./pages/RandomCocktails";
 import CocktailDetailsPage from "./pages/CocktailDetailsPage";
+//import NotesComponent from "./components/NotesComponent";
 
 
 

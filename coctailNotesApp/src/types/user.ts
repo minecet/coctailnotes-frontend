@@ -7,4 +7,3 @@ export interface User {
     bioDescription?: string;
     profilePicture?: string;
   }
-  
