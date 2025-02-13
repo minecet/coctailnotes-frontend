@@ -39,9 +39,6 @@ const Sidebar = () => {
             <Link to="/profile">My Profile</Link>
           </li>
           <li>
-            <Link to="/myblogs">My Posts</Link>
-          </li>
-          <li>
             <Link to="/mycomments">My Comments</Link>
           </li>
         </ul>

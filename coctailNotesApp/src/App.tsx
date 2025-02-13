@@ -10,6 +10,7 @@ import Sidebar from "./components/Sidebar";
 import HomePage from "./pages/HomePage";
 import RandomCocktails from "./pages/RandomCocktails";
 import CocktailDetailsPage from "./pages/CocktailDetailsPage";
+import MyComments from "./pages/MyComments";
 //import NotesComponent from "./components/NotesComponent";
 
 
@@ -18,9 +19,10 @@ import CocktailDetailsPage from "./pages/CocktailDetailsPage";
 function App() {
   return (
     <>
-
       {/* Spacer for Navbar */}
-      <div className="h-20"></div>
+      <Sidebar />
+      <div className="pt-[200px]">
+
       <div className="appContainer">
         <div className="mainAppContent">
           <Routes>
@@ -59,13 +61,20 @@ function App() {
                 </PrivateRoute>
               }
             />
-
+            <Route
+              path="/mycomments"
+              element={
+                <PrivateRoute>
+                  <MyComments />
+                </PrivateRoute>
+              }
+            />
 
             <Route path="*" element={<h1>404 Page</h1>} />
           </Routes>
 
         </div>
-        <Sidebar />
+      </div>
       </div>
 
     </>
