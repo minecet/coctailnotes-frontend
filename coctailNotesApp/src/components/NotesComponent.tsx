@@ -16,23 +16,22 @@ const NotesComponent: React.FC = () => {
     throw new Error("NotesComponent must be used within a SessionContextProvider");
   }
 
-  const { user, token } = sessionContext;
+  const { user } = sessionContext ?? {};
   const { cocktailId } = useParams<{ cocktailId: string }>();
   const [notes, setNotes] = useState<Note[]>([]);
   const [newNote, setNewNote] = useState('');
   const [loading, setLoading] = useState(true);
-
+  const [editNoteId, setEditNoteId] = useState<string | null>(null);
+  const [editContent, setEditContent] = useState('');
   const fetchNotes = async () => {
-    try {
-      const response = await fetch(`/api/notes/cocktails/${cocktailId}`);
-      if (response.ok) {
-        const data = await response.json();
-        setNotes(data);
-      }
-    } finally {
-      setLoading(false);
+    const response = await fetch(`/api/notes/cocktails/${cocktailId}`);
+    if (response.ok) {
+      const data = await response.json();
+      setNotes(data);
     }
+    setLoading(false);
   };
+
 
   const deleteNote = async (noteId: string) => {
     try {
@@ -46,7 +45,19 @@ const NotesComponent: React.FC = () => {
       console.error('Error deleting note:', error);
     }
   };
-
+  const updateNote = async (noteId: string) => {
+    const response = await fetch(`/api/notes/${noteId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content: editContent }),
+    });
+    if (response.ok) {
+      const updatedNote = await response.json();
+      setNotes(notes.map(note => note.id === noteId ? updatedNote : note));
+      setEditNoteId(null);
+      setEditContent('');
+    }
+  };
 
   const addNote = async () => {
     if (!user?.id || !cocktailId || !newNote.trim()) {
@@ -90,25 +101,27 @@ const NotesComponent: React.FC = () => {
   return (
     <div>
       <Title order={3}>Notes for this Cocktail</Title>
-      <Textarea
-        placeholder="Write your note here..."
-        value={newNote}
-        onChange={(e) => setNewNote(e.target.value)}
-      />
+      <Textarea value={newNote} onChange={(e) => setNewNote(e.target.value)} placeholder="Add a note..." />
       <Button onClick={addNote} mt="sm">Add Note</Button>
-      <div style={{ marginTop: '20px' }}>
-        {notes.map(note => (
-          <Card key={note.id} shadow="sm" padding="lg" mb="md">
+      {notes.map(note => (
+        <Card key={note.id} shadow="sm" padding="lg" mb="md">
+          {editNoteId === note.id ? (
+            <>
+              <Textarea value={editContent} onChange={(e) => setEditContent(e.target.value)} />
+              <Button onClick={() => updateNote(note.id)} size="xs">Save</Button>
+              <Button onClick={() => setEditNoteId(null)} size="xs" variant="outline">Cancel</Button>
+            </>
+          ) : (
             <Group justify="space-between">
               <Text size="sm">{note.content}</Text>
-              <Button color="red" size="xs" onClick={() => deleteNote(note.id)}>
-                Delete
-              </Button>
+              <Group>
+                <Button size="xs" onClick={() => { setEditNoteId(note.id); setEditContent(note.content); }}>Edit</Button>
+                <Button size="xs" color="red" onClick={() => deleteNote(note.id)}>Delete</Button>
+              </Group>
             </Group>
-            <Text size="xs" color="gray">Created at: {new Date(note.createdAt).toLocaleString()}</Text>
-          </Card>
-        ))}
-      </div>
+          )}
+        </Card>
+      ))}
     </div>
   );
 };
