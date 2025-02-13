@@ -17,7 +17,7 @@ const Sidebar = () => {
     if (!isAuthenticated) {
       navigate("/");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated]);
 
   if (isLoading) {
     return <p>Loading user...</p>;
