@@ -35,12 +35,16 @@ const Sidebar = () => {
 
       <nav className={classes.navLinks}>
         <ul>
+        <li>
+            <Link to="/cocktails">Cocktails</Link>
+          </li>
           <li>
             <Link to="/profile">My Profile</Link>
           </li>
           <li>
             <Link to="/mycomments">My Comments</Link>
           </li>
+
         </ul>
       </nav>
 
